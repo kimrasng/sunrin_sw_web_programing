@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        function get(){
+            let a = document.getElementById("ex").innerHTML
+            alert(a)
+        }
+
+        function set(v){
+            document.getElementById("ex").innerHTML = v
+        }
+
+    </script>
+    
+    <p id="ex">선린인터넷고등학교</p>
+    <a href="#" onclick="get()">1클릭</a>
+    <a href="#" onclick="set('변경')">2클릭</a>
+
+</body>
+</html>
