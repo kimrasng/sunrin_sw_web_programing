@@ -26,11 +26,7 @@ operatorButtons.forEach(button => {
 
 // 등호 버튼을 클릭했을 때 디스플레이에 있는 수식을 계산한다
 equalsButton.addEventListener('click', () => {
-    try {
-        display.value = evaluateExpression(display.value);
-    } catch (e) {
-        display.value = 'Error';
-    }
+    display.value = evaluateExpression(display.value);
 });
 
 // 지우기 버튼과 전체 지우기 버튼을 클릭했을 때 디스플레이를 수정한다

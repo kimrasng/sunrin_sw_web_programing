@@ -1,14 +1,19 @@
-HTML 구조
-    입력 필드 (<input id="display">): 결과와 입력값 표시.
-    숫자 버튼 (.number): 0~9 숫자 입력.
-    연산자 버튼 (.operator): +, -, *, /, . 입력.
-    등호 버튼 (#equals): 수식 계산.
-    지우기 버튼 (#clear): 마지막 문자 삭제.
-    전체 지우기 버튼 (#clearAll): 전체 입력 삭제.
-JavaScript 코드
-    숫자 버튼 클릭: 클릭된 숫자를 디스플레이에 추가.
-    연산자 버튼 클릭: 클릭된 연산자를 디스플레이에 추가.
-    등호 버튼 클릭: 디스플레이의 수식을 평가하고 결과 표시.
-    지우기 버튼 클릭 (C): 마지막 문자 삭제.
-    전체 지우기 버튼 클릭 (AC): 전체 입력 삭제.
-    수식 평가 (evaluateExpression 함수): 수식을 안전하게 평가하여 결과 반환.
+WEB 계산기
+
+계산기의 가장 필수적인 사칙연산을 직관적으로 계산하여 편하게 할 수 있도록 하였습니다.
+
+이 계산기 애플리케이션은 HTML과 JavaScript를 사용하여 구현되었습니다.
+
+    display.value += button.textContent;
+    숫자 버튼을 클릭하면 해당하는 숫자가 추가됩니다.
+
+    display.value = evaluateExpression(display.value);
+    등호 버튼을 클릭하면 계산이 수행됩니다.
+
+    display.value = display.value.slice(0, -1);
+    지우기 버튼을 누르면 한 개의 숫자 혹은 문자가 지워집니다.
+
+    display.value = '';
+    전체 지우기 버튼을 누르면 display.value가 비워집니다.
+
+GitHub 저장소 링크: https://github.com/kimrasng/sunrin_sw_web_programing/tree/main/calculator
