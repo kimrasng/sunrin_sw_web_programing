@@ -42,7 +42,7 @@
     <table id="board"></table>
     <button onclick="genGrid();">새로운 게임</button>
     <div id="status">
-        <p id="mines-left">지뢰 남은 개수: 0</p>
+        <p id="mines-left">지뢰 개수: 0</p>
         <p id="clicked-cells">클릭된 셀 수: 0</p>
     </div>
     <script>
@@ -54,63 +54,68 @@
         let totalCells = 64;
         let gameOver = false;
 
+        // 보드 생성 및 지뢰 배치 함수
         function genGrid() {
-            grid.innerHTML = "";
+            grid.innerHTML = ""; // 기존 보드 내용 초기화
             totalMines = 0;
             clickedCells = 0;
             gameOver = false;
-            minesLeftDisplay.textContent = `지뢰 남은 개수: ${totalMines}`;
+            minesLeftDisplay.textContent = `지뢰 개수: ${totalMines}`;
             clickedCellsDisplay.textContent = `클릭된 셀 수: ${clickedCells}`;
 
             for (let i = 0; i < 8; i++) {
-                let row = grid.insertRow(i);
+                let row = grid.insertRow(i); // 행 생성
                 for (let j = 0; j < 8; j++) {
-                    let cell = row.insertCell(j);
-                    cell.onclick = function () { clickBox(this); };
+                    let cell = row.insertCell(j); // 셀 생성
+                    cell.onclick = function () { clickBox(this); }; // 셀 클릭 이벤트 등록
                     let mine = document.createAttribute("mine");
                     mine.value = "false";
-                    if (Math.random() < 0.05) {
-                        mine.value = "true";
+                    if (Math.random() < 0.07) { 
+                        mine.value = "true"; // 셀에 지뢰 배치
                         totalMines++;
                     }
-                    cell.setAttributeNode(mine);
+                    cell.setAttributeNode(mine); // 셀에 지뢰 속성 추가
                 }
             }
 
-            minesLeftDisplay.textContent = `지뢰 남은 개수: ${totalMines}`;
+            minesLeftDisplay.textContent = `지뢰 개수: ${totalMines}`;
         }
 
+        // 셀 클릭 처리 함수
         function clickBox(cell) {
-            if (gameOver || cell.className !== "") return;
+            if (gameOver || cell.className !== "") return; // 게임 종료 시 또는 이미 클릭된 셀인 경우 무시
 
             if (cell.getAttribute("mine") === "true") {
-                cell.className = "mine";
-                revealMines(); // 지뢰를 클릭한 후 모든 지뢰를 표시
-                alert("게임이 종료되었습니다.");
-                gameOver = true;
+                cell.className = "mine"; // 지뢰가 있는 셀 처리
+                revealMines(); // 모든 지뢰 표시
+                alert("게임이 종료되었습니다."); // 게임 종료 알림
+                gameOver = true; // 게임 종료 상태로 설정
             } else {
-                cell.className = "clicked";
+                cell.className = "clicked"; // 클릭된 셀 처리
                 clickedCells++;
                 clickedCellsDisplay.textContent = `클릭된 셀 수: ${clickedCells}`;
 
                 if (clickedCells + totalMines === totalCells) {
-                    alert("축하합니다! 게임에서 승리했습니다.");
+                    alert("축하합니다! 게임에서 승리했습니다."); // 승리 알림
                 }
             }
         }
 
+        // 모든 지뢰 표시 함수
         function revealMines() {
             for (let row of grid.rows) {
                 for (let cell of row.cells) {
                     if (cell.getAttribute("mine") === "true") {
-                        cell.className = "mine";
+                        cell.className = "mine"; // 지뢰 셀 표시
                     }
                     cell.onclick = null; // 셀 클릭 비활성화
                 }
             }
         }
 
+        // 페이지 로드 시 보드 생성
         window.onload = genGrid;
+    </script>
     </script>
 </body>
 
