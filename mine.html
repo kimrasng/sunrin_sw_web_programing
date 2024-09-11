@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>지뢰찾기</title>
     <style>
- * {
+* {
             text-align: center;
         }
 
@@ -52,16 +52,18 @@
         let totalMines = 0;
         let clickedCells = 0;
         let totalCells = 64;
+        let gameOver = false;
 
         function genGrid() {
             grid.innerHTML = "";
             totalMines = 0;
             clickedCells = 0;
+            gameOver = false;
             minesLeftDisplay.textContent = `지뢰 남은 개수: ${totalMines}`;
             clickedCellsDisplay.textContent = `클릭된 셀 수: ${clickedCells}`;
 
             for (let i = 0; i < 8; i++) {
-                row = grid.insertRow(i);
+                let row = grid.insertRow(i);
                 for (let j = 0; j < 8; j++) {
                     let cell = row.insertCell(j);
                     cell.onclick = function () { clickBox(this); };
@@ -79,21 +81,35 @@
         }
 
         function clickBox(cell) {
-            if (cell.className !== "") return;
+            if (gameOver || cell.className !== "") return;
 
             if (cell.getAttribute("mine") === "true") {
                 cell.className = "mine";
+                revealMines(); // 지뢰를 클릭한 후 모든 지뢰를 표시
                 alert("게임이 종료되었습니다.");
+                gameOver = true;
             } else {
                 cell.className = "clicked";
                 clickedCells++;
                 clickedCellsDisplay.textContent = `클릭된 셀 수: ${clickedCells}`;
-            }
 
-            if (clickedCells + totalMines === totalCells) {
-                alert("축하합니다! 게임에서 승리했습니다.");
+                if (clickedCells + totalMines === totalCells) {
+                    alert("축하합니다! 게임에서 승리했습니다.");
+                }
             }
         }
+
+        function revealMines() {
+            for (let row of grid.rows) {
+                for (let cell of row.cells) {
+                    if (cell.getAttribute("mine") === "true") {
+                        cell.className = "mine";
+                    }
+                    cell.onclick = null; // 셀 클릭 비활성화
+                }
+            }
+        }
+
         window.onload = genGrid;
     </script>
 </body>
