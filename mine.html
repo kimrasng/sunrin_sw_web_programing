@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지뢰찾기</title>
+    <style>
+ * {
+            text-align: center;
+        }
+
+        #board {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #board tr td {
+            border: 1px solid white;
+            background: #34da79;
+            width: 16px;
+            height: 16px;
+            text-align: center;
+        }
+
+        #board tr td.clicked {
+            background: #6c5ee7;
+        }
+
+        #board tr td.mine {
+            background: #FF0000;
+        }
+
+        #status {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>지뢰찾기</h1>
+    <table id="board"></table>
+    <button onclick="genGrid();">새로운 게임</button>
+    <div id="status">
+        <p id="mines-left">지뢰 남은 개수: 0</p>
+        <p id="clicked-cells">클릭된 셀 수: 0</p>
+    </div>
+    <script>
+        let grid = document.getElementById("board");
+        let minesLeftDisplay = document.getElementById("mines-left");
+        let clickedCellsDisplay = document.getElementById("clicked-cells");
+        let totalMines = 0;
+        let clickedCells = 0;
+        let totalCells = 64;
+
+        function genGrid() {
+            grid.innerHTML = "";
+            totalMines = 0;
+            clickedCells = 0;
+            minesLeftDisplay.textContent = `지뢰 남은 개수: ${totalMines}`;
+            clickedCellsDisplay.textContent = `클릭된 셀 수: ${clickedCells}`;
+
+            for (let i = 0; i < 8; i++) {
+                row = grid.insertRow(i);
+                for (let j = 0; j < 8; j++) {
+                    let cell = row.insertCell(j);
+                    cell.onclick = function () { clickBox(this); };
+                    let mine = document.createAttribute("mine");
+                    mine.value = "false";
+                    if (Math.random() < 0.05) {
+                        mine.value = "true";
+                        totalMines++;
+                    }
+                    cell.setAttributeNode(mine);
+                }
+            }
+
+            minesLeftDisplay.textContent = `지뢰 남은 개수: ${totalMines}`;
+        }
+
+        function clickBox(cell) {
+            if (cell.className !== "") return;
+
+            if (cell.getAttribute("mine") === "true") {
+                cell.className = "mine";
+                alert("게임이 종료되었습니다.");
+            } else {
+                cell.className = "clicked";
+                clickedCells++;
+                clickedCellsDisplay.textContent = `클릭된 셀 수: ${clickedCells}`;
+            }
+
+            if (clickedCells + totalMines === totalCells) {
+                alert("축하합니다! 게임에서 승리했습니다.");
+            }
+        }
+        window.onload = genGrid;
+    </script>
+</body>
+
+</html>
