@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="draw()">
+
+    <h1></h1>
+    <canvas id="canvas" width="150" height="200"></canvas>
+
+    <script>
+        function draw() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+
+        ctx.fillRect(0, 0, 150, 150);
+        ctx.save();
+        
+        ctx.fillText("kimdohyun", 20, 180);
+        ctx.fillText("dot", 20, 200);
+        
+        ctx.rotate((Math.PI / 180) * 45); // 45도 회전하기
+
+
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
+            ctx.save();
+            ctx.fillStyle = "rgb(" + 51 * i + ", " + (255 - 51 * i) + ", 255)";
+            ctx.translate(50 + j * 40, -50 + i * 40);
+            ctx.fillRect(0, 0, 25, 25);
+            ctx.restore();
+            }
+        }
+    
+
+
+        }
+    </script>
+</body>
+</html>

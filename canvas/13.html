@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <canvas id="canvas" width="800" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        const img = new Image();
+        img.src = 'https://media.istockphoto.com/id/104355461/ko/%EC%82%AC%EC%A7%84/%EC%A0%84%EB%A9%B4-%EC%98%81%EA%B5%AD-%EC%87%BC%ED%8A%B8%ED%97%A4%EC%96%B4%EA%B3%A0%EC%96%91%EC%9D%B4-7-%EA%B0%9C%EC%9B%94-%ED%9C%B4%EC%8B%9D.jpg?s=612x612&w=0&k=20&c=4OsJ6wig6RNW7TKkLUvyrYKgz1fFRKSWuN0oDgpQ2R0=';  // 플레이스홀더 이미지 사용
+        
+        img.onload = function() {
+            // 이미지를 3번 반복하여 그립니다
+            for (let i = 0; i < 3; i++) {
+                ctx.drawImage(img, i * 300, 0, 400, 380);
+            }
+        };
+    </script>
+</body>
+</html>

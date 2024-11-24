@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // 그라데이션 생성
+        const gradient = ctx.createRadialGradient(50, 50, 10, 50, 50, 200);
+        gradient.addColorStop(0, 'white');
+        gradient.addColorStop(1, 'red');
+        
+        // 사각형 그리기
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 300, 200);
+      </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="400"></canvas>
+    <script>
+        function toRadian(d) {
+            return (d * Math.PI) / 180;
+        }
+        
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        ctx.beginPath();
+        ctx.arc(300, 200, 200, 0, toRadian(360), false);
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(300, 300, 50, 0, toRadian(180), true);
+        ctx.strokeStyle = "black";
+        ctx.stroke()
+
+        ctx.beginPath();
+        ctx.arc(250, 150, 30, 0, toRadian(360), false);
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(350, 150, 30, 0, toRadian(360), false);
+        ctx.stroke();
+        ctx.closePath();
+
+    </script>
+</body>
+</html>

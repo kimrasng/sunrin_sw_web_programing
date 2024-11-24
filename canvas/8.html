@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+    
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, 400, 400);
+    
+        const centerX = 200;
+        const centerY = 200;
+        const lineLength = 300;
+        const numberOfLines = 24;
+    
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        
+        for (let i = 0; i < numberOfLines; i++) {
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(lineLength, 0);
+          ctx.strokeStyle = '#f0f0f0';
+          ctx.lineWidth = 15;
+          ctx.stroke();
+          ctx.rotate((Math.PI * 2) / numberOfLines);
+        }
+        
+        ctx.restore();
+    
+        const img = new Image();
+        img.src = './html.png';
+        img.onload = function() {
+          const imgWidth = 200;
+          const imgHeight = 200;
+          ctx.drawImage(img, 100, 100, imgWidth, imgHeight);
+        };
+      </script>
+</body>
+</html>

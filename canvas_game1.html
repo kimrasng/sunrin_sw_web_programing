@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>Javascript Game</title>
+    <style>
+        canvas {
+            border: 1px dotted red;	/* 캔버스에 경계선을 그려준다. */
+            background-color: #fcff00;	/* 캔버스의 배경색을 지정한다. */
+        }
+    </style>
+        <script>
+            let image = new Image();
+            image.src = "./lawn.png";
+            let backimage = new Image();
+            backimage.src = "./net.png";
+    
+            function drawBackground() {
+                context.drawImage(backimage, 450, 100, 60, 80);
+                context.drawImage(image,450, 60, 450, 60);
+            }
+    
+            function draw() {
+                drawBackground();
+            }
+    
+            function init() {
+                context = document.getElementById('canvas').getContext('2d');
+                draw()
+            }
+        </script>
+</head>
+
+<body onload="init();">
+    <canvas id="canvas" width="500" height="300"></canvas>
+    <div id="control">
+        속도<input id="velocity" value="30" type="number" min="0" max="100" step="1" />
+        각도<input id="angle" value="45" type="number" min="0" max="90" step="1" />
+        <div id="score">점수 = 0</div>
+        <button onclick="start()">발사</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        ctx.beginPath();
+        ctx.moveTo(40, 100);
+        ctx.lineTo(100, 15);
+        ctx.lineTo(200, 100);
+        ctx.closePath();
+        ctx.strokeStyle = "green";
+        ctx.fillStyle = "green";
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.moveTo(140, 100);
+        ctx.lineTo(200, 15);
+        ctx.lineTo(300, 100);
+        ctx.strokeStyle = "black";
+        ctx.closePath();
+
+        ctx.stroke();
+
+    </script>
+</body>
+</html>

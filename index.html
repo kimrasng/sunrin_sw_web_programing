@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <script>
+    const num = document.getElementById("test");
+    const name = document.getElementById("names");
+
+    function sub(num) {
+      if (num >= 1 && num <= 100) {
+        document.getElementById("result").innerHTML = num;
+      } else {
+        document.getElementById("result").innerHTML =
+          "1부터 100 사이의 정수를 입력하시오.";
+      }
+    }
+
+    function names(name) {
+      if (name.length < 6 || name.length > 8) {
+        alert("이름은 6-8자 사이로 입력하세요.");
+      }
+    }
+  </script>
+  <body>
+    <h1>유효성 검사 스크립트 작성</h1>
+    <p>1부터 100 사이의 정수를 입력하시오.</p>
+    <input id="test" />
+    <button type="button" onclick="sub(test)">제출</button>
+    <p id="result"></p>
+
+    <form>
+      이름(6-8 문자): <input type="text" id="names" /><br />
+      과일선택
+      <select id="fruits" class="required">
+        <option value="0">선택하세요</option>
+        <option value="1">사과</option>
+        <option value="2">배</option>
+        <option value="3">바나나</option>
+      </select>
+      <input type="button" value="확인" />
+    </form>
+  </body>
+</html>
